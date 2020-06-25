@@ -50,12 +50,13 @@ function MyDrawer() {
         activeTintColor: '#e91e63',
         itemStyle: { marginVertical: 5 },
       }}>
+          <MainNavigator.Screen name='Home' 
+            options={{drawerLabel: 'Home'}} 
+            component={MyHome} />
         <MainNavigator.Screen name='Menu' 
             options={{drawerLabel: 'Menu'}} 
             component={MyStack} />
-        <MainNavigator.Screen name='Home' 
-            options={{drawerLabel: 'Home'}} 
-            component={MyHome} />
+        
         
         
       </MainNavigator.Navigator>
