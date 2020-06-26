@@ -6,6 +6,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './HomeComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
 
 const MenuNavigator=createStackNavigator();
 function MyStack() {
@@ -41,23 +43,57 @@ function MyHome() {
         </HomeNavigator.Navigator>
     );
 }
+const ContactNavigator = createStackNavigator();
+function MyCont() {
+    return (
+        <HomeNavigator.Navigator
+        initialRouteName='Contact'
+        screenOptions={{
+            headerTintColor:'#fff',
+            headerStyle:{backgroundColor:'#512DA8'},
+            headerTitleStyle:{color:'#fff'}
+        }}>
+            <HomeNavigator.Screen name="Contact" component={Contact} />
+        </HomeNavigator.Navigator>
+    );
+}
+
+const AboutNaviagtor = createStackNavigator();
+function MyAbout() {
+    return(
+        <HomeNavigator.Navigator
+        initialRouteName='Contact'
+        screenOptions={{
+            headerTintColor:'#fff',
+            headerStyle:{backgroundColor:'#512DA8'},
+            headerTitleStyle:{color:'#fff'}
+        }}>
+            <HomeNavigator.Screen name="About" component={About} />
+        </HomeNavigator.Navigator>
+    );
+}
 
 const MainNavigator = createDrawerNavigator();
 function MyDrawer() {
     return (
       <MainNavigator.Navigator 
       drawerContentOptions={{
-        activeTintColor: '#e91e63',
-        itemStyle: { marginVertical: 5 },
+        activeTintColor: '#512DA8',
+        itemStyle: { marginVertical: 5, drawerBackgroundColor: '#D1C4E9' },
       }}>
-          <MainNavigator.Screen name='Home' 
+        <MainNavigator.Screen name='Home' 
             options={{drawerLabel: 'Home'}} 
             component={MyHome} />
+        <MainNavigator.Screen name='About' 
+            options={{drawerLabel: 'About Us'}} 
+            component={MyAbout} />
         <MainNavigator.Screen name='Menu' 
             options={{drawerLabel: 'Menu'}} 
             component={MyStack} />
         
-        
+        <MainNavigator.Screen name='Contact' 
+            options={{drawerLabel: 'Contact Us'}} 
+            component={MyCont} />
         
       </MainNavigator.Navigator>
     );
