@@ -19,8 +19,7 @@ function MyStack() {
                 headerTintColor:'#fff',
                 headerStyle:{backgroundColor:'#512DA8'},
                 headerTitleStyle:{color:'#fff'}
-            }} >
-                
+            }} >    
             <MenuNavigator.Screen name="Menu" component={Menu} 
                 options={ ({navigation}) => ({
                     headerLeft: () => ( <Icon name='menu' size={24} color='white' onPress={() => navigation.toggleDrawer()} />
