@@ -8,6 +8,7 @@ import { createDrawerNavigator, DrawerItemList } from '@react-navigation/drawer'
 import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
+import Reservation from './ReservationComponent';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -69,42 +70,64 @@ function MyHome() {
 const ContactNavigator = createStackNavigator();
 function MyCont() {
     return (
-        <HomeNavigator.Navigator
+        <ContactNavigator.Navigator
             initialRouteName='Contact'
             screenOptions={{
                 headerTintColor:'#fff',
                 headerStyle:{backgroundColor:'#512DA8'},
                 headerTitleStyle:{color:'#fff'}
             }}>
-            <HomeNavigator.Screen name="Contact" component={Contact} 
+            <ContactNavigator.Screen name="Contact" component={Contact} 
                 options = { ({navigation}) => ({
                     headerLeft: () => (
                         <Icon name='menu' size={24} color='white' 
                             onPress={() => navigation.toggleDrawer()}
                         />
                     ) }) } />
-        </HomeNavigator.Navigator>
+        </ContactNavigator.Navigator>
     );
 }
 
-const AboutNaviagtor = createStackNavigator();
+const AboutNavigator = createStackNavigator();
 function MyAbout() {
     return(
-        <HomeNavigator.Navigator
+        <AboutNavigator.Navigator
             initialRouteName='Contact'
             screenOptions={{
                 headerTintColor:'#fff',
                 headerStyle:{backgroundColor:'#512DA8'},
                 headerTitleStyle:{color:'#fff'}
             }}>
-            <HomeNavigator.Screen name="About" component={About}
+            <AboutNavigator.Screen name="About" component={About}
                 options={ ({navigation}) => ({
                     headerLeft: () => (
                         <Icon name='menu' size={24} color='white'
                             onPress={() => navigation.toggleDrawer()}
                         />
                     ) }) } />
-        </HomeNavigator.Navigator>
+        </AboutNavigator.Navigator>
+    );
+}
+
+const ReservationNavigator = createStackNavigator();
+function MyReserve() {
+    return(
+        <ReservationNavigator.Navigator
+            initialRouteName='Reservation'
+            screenOptions={{
+                headerTintColor:'#fff',
+                headerStyle:{backgroundColor:'#512DA8'},
+                headerTitleStyle:{color:'#fff'}
+            }}>
+            <ReservationNavigator.Screen name="Reservation" component={Reservation}
+                options={ ({navigation}) => ({
+                    headerLeft: () => (
+                        <Icon name='menu' size={24} color='white'
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    ) 
+                }) } />
+        </ReservationNavigator.Navigator>
     );
 }
 
@@ -171,7 +194,17 @@ function MyDrawer() {
                   color={tintColor}
                 />
               )}} 
-            component={MyCont} /> 
+            component={MyCont} />
+        <MainNavigator.Screen name='Reservation' 
+            options={{drawerLabel: 'Reserve Table', drawerIcon: ({ tintColor, focused }) => (
+                <Icon
+                  name='cutlery'
+                  type='font-awesome'            
+                  size={24}
+                  color={tintColor}
+                />
+              )}} 
+            component={MyReserve} />  
       </MainNavigator.Navigator>
     );
 }
