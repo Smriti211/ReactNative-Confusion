@@ -9,6 +9,7 @@ import Home from './HomeComponent';
 import About from './AboutComponent';
 import Contact from './ContactComponent';
 import Reservation from './ReservationComponent';
+import Favorites from "./FavoriteComponent";
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
@@ -131,6 +132,28 @@ function MyReserve() {
     );
 }
 
+const FavoriteNavigator = createStackNavigator();
+function MyFav() {
+    return(
+        <FavoriteNavigator.Navigator
+            initialRouteName='Favorites'
+            screenOptions={{
+                headerTintColor:'#fff',
+                headerStyle:{backgroundColor:'#512DA8'},
+                headerTitleStyle:{color:'#fff'}
+            }}>
+            <FavoriteNavigator.Screen name="Favorites" component={Favorites}
+                options={ ({navigation}) => ({
+                    headerLeft: () => (
+                        <Icon name='menu' size={24} color='white'
+                            onPress={() => navigation.toggleDrawer()}
+                        />
+                    ) 
+                }) } />
+        </FavoriteNavigator.Navigator>
+    );
+}
+
 const CustomDrawerContentComponent = (props) => (
     <ScrollView>
         <View style={styles.drawerHeader}>
@@ -195,6 +218,12 @@ function MyDrawer() {
                 />
               )}} 
             component={MyCont} />
+        <MainNavigator.Screen name='Favorites' 
+            options={{drawerLabel: 'My Favorite',
+            drawerIcon: ({ tintColor, focused }) => (
+                <Icon name='heart' type='font-awesome' size={24} color={tintColor} />
+            )}} 
+            component={MyFav} />
         <MainNavigator.Screen name='Reservation' 
             options={{drawerLabel: 'Reserve Table', drawerIcon: ({ tintColor, focused }) => (
                 <Icon
@@ -204,8 +233,8 @@ function MyDrawer() {
                   color={tintColor}
                 />
               )}} 
-            component={MyReserve} />  
-      </MainNavigator.Navigator>
+            component={MyReserve} />         
+    </MainNavigator.Navigator>
     );
 }
 

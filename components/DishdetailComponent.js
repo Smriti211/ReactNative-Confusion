@@ -92,6 +92,7 @@ class DishDetail extends Component{
     handleForm(dishId) {
         this.props.postComment(dishId, this.state.rating, this.state.author, this.state.comment);
         this.toggleModal();
+        this.resetForm();
     }
 
     resetForm() {
