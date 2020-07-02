@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
+import { exp } from 'react-native-reanimated';
 
 export const postFavorite = (dishId)  => (dispatch) => {
     setTimeout(() => {
@@ -9,6 +10,11 @@ export const postFavorite = (dishId)  => (dispatch) => {
 
 export const addFavorite = (dishId) => ({
     type: ActionTypes.ADD_FAVORITE,
+    payload: dishId
+});
+
+export const deleteFavorite = (dishId) => ({
+    type: ActionTypes.DELETE_FAVORITE,
     payload: dishId
 });
 
@@ -194,3 +200,4 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
