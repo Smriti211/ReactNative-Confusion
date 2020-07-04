@@ -197,6 +197,7 @@ const MainNavigator = createDrawerNavigator();
 function MyDrawer() {
     return (
     <MainNavigator.Navigator  
+        initialRouteName={Home}
         drawerContentOptions={{ activeTintColor: '#512DA8',
             itemStyle: { marginVertical: 5, drawerBackgroundColor: '#D1C4E9' } }}
         drawerContent={props => <CustomDrawerContentComponent {...props}/> }
